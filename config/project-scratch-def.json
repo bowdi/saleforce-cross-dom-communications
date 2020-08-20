@@ -1,0 +1,101 @@
+{
+  "orgName": "Itchy Helix",
+  "edition": "Enterprise",
+  "features": [
+    "API", 
+    "AuthorApex", 
+    "BigObjectsBulkAPI", 
+    "DebugApex",
+    "DefaultWorkflowUser",
+    "Entitlements",
+    "Interaction",
+    "Knowledge",
+    "LightningServiceConsole",
+    "Macros",
+    "PlatformCache",
+    "PersonAccounts", 
+    "ProcessBuilder",
+    "RecordTypes",
+    "ServiceCloud", 
+    "ServiceUser",
+    "SingleSignOn",
+    "TransactionFinalizers",
+    "Workflow"
+  ],
+  "settings" : {
+    "actions": {
+      "enableThirdPartyActions" : true
+    },
+    "apexSettings": {
+      "enableApexApprovalLockUnlock" : true,
+      "enableApexCtrlImplicitWithSharingPref" : true,
+      "enableApexPropertyGetterPref" : true,
+      "enableAuraApexCtrlAuthUserAccessCheckPref" : true,
+      "enableAuraApexCtrlGuestUserAccessCheckPref" : true,
+      "enableNonCertifiedApexMdCrud" : true
+    },
+    "chatterSettings": {
+      "allowChatterGroupArchiving": true,
+      "allowRecordsInChatterGroup": true,
+      "enableChatter": true,
+      "enableFeedEdit": true,
+      "enableFeedPinning": true,
+      "enableFeedsRichText": true
+    },
+    "entitlementSettings" : {
+      "enableEntitlements" : true
+    },
+    "flowSettings": {
+      "doesFormulaEnforceDataAccess": true,
+      "enableFlowInterviewSharingEnabled": true,
+      "enableFlowPauseEnabled": true,
+      "enableFlowUseApexExceptionEmail": true,
+      "enableInvocableFlowFixEnabled": true,
+      "isAccessToInvokedApexRequired": true,
+      "isEnhancedFlowListViewVisible": true
+    },
+    "knowledgeSettings": {
+      "enableKnowledge": true,
+      "enableLightningKnowledge": true
+    },
+    "lightningExperienceSettings": {
+      "enableFeedbackInMobile": true,
+      "enableSplitViewOnStandard": true,
+      "enableInAppTooltips": true,
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false,
+      "enableS1OfflinePref": true
+    },
+    "orgPreferenceSettings": {
+      "apexApprovalLockUnlock": true,
+      "chatterEnabled": true,
+      "consentManagementEnabled": true,
+      "s1DesktopEnabled": true
+    },
+    "recordPageSettings": {
+        "enableDynamicForms": true
+    },
+    "securitySettings": {
+      "enableAdminLoginAsAnyUser": true,
+      "passwordPolicies": {
+          "enableSetPasswordInApi": true
+      }
+    },
+    "userInterfaceSettings" : {
+      "alternateAlohaListView" : true,
+      "enableCollapsibleSideBar" : true,
+      "enableNewPageLayoutEditor" : true,
+      "enablePrintableListViews" : true,
+      "enableProfileCustomTabsets" : true,
+      "enableQuickCreate" : true,
+      "enableTabOrganizer" : true
+    },
+    "userManagementSettings" : {
+      "enableEnhancedPermsetMgmt" : true,
+      "enableEnhancedProfileMgmt" : true,
+      "enableNewProfileUI" : true
+    }
+  }
+}

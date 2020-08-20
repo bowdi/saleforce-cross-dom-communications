@@ -1,0 +1,96 @@
+# List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
+# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+#
+
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__
+
+# ignore file names
+IgnoreFile_*
+
+# settings are managed in the scratch org definition file so these
+# don't need to be deployed to scratch orgs using source:push/pull
+# .forceignore only applys to source:push and pull
+# **.settings-meta.xml
+
+# the only setting we need to re-includ / set in this manner
+# is the below as it depends on the theme being deployed
+# !**/settings/LightningExperience.settings-meta.xml
+
+# we do not want this standard metadata in scm
+# **/appMenus
+
+# removing custom field object translations as these are not necessary
+# *__c.fieldTranslation-meta.xml
+
+# this metadata is currently broken in scratch org
+# so excluding from push / pull commands
+# **/Helix_Home_Page.flexipage-meta.xml
+
+# this metadata needs to be changed before deploying
+# to scratch org (decreased to under 3MB shared)
+# **/cachePartitions
+
+# metadata type switches so deploymemts / pushes can be quicker
+# **/applications
+# **/aura
+# **/brandingSets
+# **/certs
+# **/classes
+# **/contentassets
+# **/customMetadata
+# **/customMetadata/MetadataField.*
+# **/customMetadata/MetadataFieldGroup.*
+# **/customMetadata/MetadataFieldSection.*
+# **/customMetadata/MetadataFieldPage.*
+# **/customPermissions
+# **/dashboards
+# **/flexipages
+# **/flexipages/Business_Account**
+# **/flexipages/Named_Driver**
+# **/flexipages/Member**
+# **/flexipages/Vitality**
+# **/flexipages/Group_Secretary**
+# **/flexipages/Plan_Membership**
+# **/flexipages/Plan**
+# **/flows
+# **/globalValueSets
+# **/groups
+# **/labels
+# **/layouts
+# **/layouts/Account**
+# **/layouts/PersonAccount**
+# **/layouts/ServiceContract**
+# **/lightningExperienceThemes
+# **/lwc
+# **/messageChannels
+# **/namedCredentials
+# **/objects
+# **/objects/Account
+# **/objects/PersonAccount
+# **/objects/ServiceContract
+# **/objectTranslations
+# **/pages
+# **/profiles
+# **/profiles/Admin**
+# **/profiles/Developer**
+# **/profiles/Mulesoft**
+# **/profiles/UCDL**
+# **/profiles/Vitality**
+# **/queues
+# **/quickActions
+# **/reports
+# **/roles
+# **/settings
+# **/sharingRules
+# **/standardValueSets
+# **/staticresources
+# **/tabs
+# **/triggers
+# **/workflows

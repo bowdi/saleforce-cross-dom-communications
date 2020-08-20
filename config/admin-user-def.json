@@ -1,0 +1,12 @@
+{
+    "Username": "admin_user@vitality.co.uk.scratchorg",
+    "FirstName": "Admin",
+    "LastName": "User",
+    "Email": "admin_user=vitality.co.uk@example.com",
+    "TimeZoneSidKey": "Europe/London",
+    "LocaleSidKey": "en_GB",
+    "EmailEncodingKey": "ISO-8859-1",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "System Administrator",
+    "generatePassword": true
+}

@@ -1,0 +1,14 @@
+{
+    "Username": "debug_user@vitality.co.uk.scratchorg",
+    "FirstName": "Debug",
+    "LastName": "User",
+    "Email": "debug_user=vitality.co.uk@example.com",
+    "Alias": "debug",
+    "TimeZoneSidKey": "Europe/London",
+    "LocaleSidKey": "en_GB",
+    "EmailEncodingKey": "ISO-8859-1",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "System Administrator",
+    "generatePassword": true,
+    "UserPreferencesUserDebugModePref": true
+}

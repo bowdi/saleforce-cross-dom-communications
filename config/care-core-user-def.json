@@ -1,0 +1,13 @@
+{
+    "Username": "core_user@vitality.co.uk.scratchorg",
+    "FirstName": "Core",
+    "LastName": "User",
+    "Email": "core_user=vitality.co.uk@example.com",
+    "Alias": "coreUser",
+    "TimeZoneSidKey": "Europe/London",
+    "LocaleSidKey": "en_GB",
+    "EmailEncodingKey": "ISO-8859-1",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "Vitality Core",
+    "generatePassword": true
+}

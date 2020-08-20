@@ -1,0 +1,71 @@
+# This file is used for Git repositories to specify intentionally untracked files that Git should ignore. 
+# If you are not using git, you can delete this file. For more information see: https://git-scm.com/docs/gitignore
+# For useful gitignore templates see: https://github.com/github/gitignore
+
+# Salesforce cache
+.sfdx/
+.localdevserver/
+
+# LWC VSCode autocomplete
+**/lwc/jsconfig.json
+
+# VS Code settings
+.vscode/
+
+# LWC Jest coverage reports
+coverage/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Eslint cache
+.eslintcache
+.eslintrc.json
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# package.xml is no longer necessary
+package.xml
+manifest/
+
+# making sure we don't move certificates and named credentials
+# as these need to be configured per environment
+certs/
+**/namedCredentials/Member_API*
+
+# ignore file names
+IgnoreFile_*
+
+# remove scripts, data and logs folders as these will be managed
+# per developer
+scripts/
+data/
+logs/
+
+# removing custom field object translations as these are not necessary
+*__c.fieldTranslation-meta.xml
+
+# this metadata is currently broken in scratch org
+# so untracking local changes so we don't have to stash
+# all the time
+**/Helix_Home_Page.flexipage-meta.xml
+
+# this metadata needs to be changed before deploying
+# to scratch org (decreased to under 3MB shared) so
+# untracking it so we don't have to stash changes
+# all the time
+**/cachePartitions/**
