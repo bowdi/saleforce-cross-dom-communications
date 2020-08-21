@@ -26,6 +26,8 @@ There are two ways of communicating across the DOM when using [LWC](https://deve
 
 We'll explore both for the purposes of this whitepaper so that we get a full picture of options, however, all the time we have some [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) components in our platform that require access to the same data, we will need to use [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) as it is the only option listed above that supports communicating with both [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) and [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc).
 
+All source code is available in [this](https://devops.vitality.co.uk/bitbucket/projects/HLXS/repos/cross-dom-comms-whitepaper/browse) Bitbucket repository for future reference.
+
 ## Application Events
 ### Method
 It's worth first baselining the performance against the current technology and this involves running a test against a new [scratch org](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs.htm). To start I created a blank org using the shape defined in [this](https://devops.vitality.co.uk/bitbucket/projects/HLXS/repos/cross-dom-comms-whitepaper/browse) repo. I then created two [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) components, one sender and one receiver with a matching [Application Event](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm).
