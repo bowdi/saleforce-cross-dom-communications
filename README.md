@@ -508,3 +508,14 @@ export default class PubsubReceiver extends LightningElement {
 * Average Message Time (ms): 0.03721000091172755
 * Min Message Time (ms): 0.019999919459223747
 * Max Message Time (ms): 0.7499998901039362
+
+## Conclusion
+While it is clear when looking through the results that the pubsub module pattern seems to be the quickest, against even our baseline, it unfortunately won't be our transportation method of choice at this point in time due to:
+1. It not being interoperable with Aura (this is especially important as we transition between the two frameworks)
+2. It does not have a supported metadata backing i.e. it relies on two components using the same string which seems extremely brittle.
+
+Across the board we do see a degradation between [Application Event](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm) and [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm), however, this should not be noticeable to our users as it is [generally believed](https://en.wikipedia.org/wiki/Time_perception#Neuroscientific_perspectives) differences under 100ms are imperceptible to the human eye.
+
+Even taking into account the fact there could be up to 3 events being in transferred in any one request (when using the [Dispatcher Pattern](https://devops.vitality.co.uk/confluence/display/SD/Dispatcher+Pattern) there could be a chain such as client -> dispatcher -> filter -> client) this still does not cross the critical threshold.
+
+With all of the above in mind, I do not believe we need to look into alternative solutions to [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm). It is performant enough not to be noticeable by our users, it is interoperable with our existing [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) components, it's [limitations](https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.use_message_channel_considerations) do not affect our use cases, and it ultimately delivers our requirements for cross DOM communications in a supported, metadata backed form.
