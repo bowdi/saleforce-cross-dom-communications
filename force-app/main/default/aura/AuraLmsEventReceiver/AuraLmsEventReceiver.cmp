@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="numberOfMessagesReceived" type="Integer" default="0"/>
+    <aura:attribute name="averageMessageTimeMs" type="Integer" default="0"/>
+    <aura:attribute name="minMessageTimeMs" type="Integer"/>
+    <aura:attribute name="maxMessageTimeMs" type="Integer"/>
+
+    <aura:attribute name="lastMessage" type="Integer" default="0"/>
+    <aura:attribute name="lastMessageTimeTakenMs" type="Integer" default="0"/>
+
+    <lightning:messageChannel type="LmsEvent__c" onMessage="{!c.handleEvent}"/>
+
+    <lightning:card title="Aura - LMS Event Receiver">
+        <div class="slds-var-p-around_large">
+            <span>Number Of Messages Received: {!v.numberOfMessagesReceived}</span><br/>
+            <span>Average Message Time (ms): {!v.averageMessageTimeMs}</span><br/>
+            <span>Min Message Time (ms): {!v.minMessageTimeMs}</span><br/>
+            <span>Max Message Time (ms): {!v.maxMessageTimeMs}</span><br/>
+            <span>Last Message: {!v.lastMessage}</span><br/>
+            <span>Last Message Time Taken (ms): {!v.lastMessageTimeTakenMs}</span><br/>
+        </div>
+    </lightning:card>
+</aura:component>	

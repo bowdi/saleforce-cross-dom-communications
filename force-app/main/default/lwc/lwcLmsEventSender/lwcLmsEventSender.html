@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="LWC - LMS Event Sender">
+        <div class="slds-var-p-around_large">
+            <lightning-input name="messageText" label="Message Text" value={messageText}></lightning-input>
+            <br/>
+            <div class="slds-align_absolute-center">
+                <lightning-button label="Send Message" title="Send event" onclick={sendEvent}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

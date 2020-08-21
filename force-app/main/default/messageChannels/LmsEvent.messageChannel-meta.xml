@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>LMS Event</masterLabel>
+    <isExposed>true</isExposed>
+    <description>This is a sample Lightning Message Channel to test performance.</description>
+    <lightningMessageFields>
+        <fieldName>message</fieldName>
+        <description>A message payload for debugging purposes</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>sendTime</fieldName>
+        <description>The send time of the message for statistics</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

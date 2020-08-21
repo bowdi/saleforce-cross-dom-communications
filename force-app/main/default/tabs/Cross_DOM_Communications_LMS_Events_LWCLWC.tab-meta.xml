@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Created by Lightning App Builder</description>
+    <flexiPage>Cross_DOM_Communications_LMS_Events_AuraLWC</flexiPage>
+    <label>Cross DOM Comms - LMS Events LWC->LWC</label>
+    <motif>Custom75: IP Phone</motif>
+</CustomTab>
