@@ -34,7 +34,8 @@ A Lightning page was then setup with the two components on at the same level (th
 
 The sender is a simple component that has an input box for a message (for testing purposed), a button to trigger the send of the event and some javascript to send the message along with the current time.
 
-#### Component
+#### Aura Application Event Sender
+##### Component
 ``` HTML
 <aura:component implements="flexipage:availableForAllPageTypes">
     <aura:attribute name="messageText" type="String" default="Hello!"/>
@@ -52,7 +53,7 @@ The sender is a simple component that has an input box for a message (for testin
     </lightning:card>
 </aura:component>	
 ```
-#### Controller
+##### Controller
 ``` Javascript
 ({
     sendEvent : function(component, event, helper) {
@@ -70,7 +71,8 @@ The only thing worth mentioning about the above code is the use of `window.perfo
 
 The sender is equally as simple, with markup just facilitating the showing of the results and Javascript performing calculations as events are received.
 
-#### Component
+#### Aura Application Event Receiver
+##### Component
 ``` HTML
 <aura:component implements="flexipage:availableForAllPageTypes">
     <aura:attribute name="numberOfMessagesReceived" type="Integer" default="0"/>
@@ -96,7 +98,7 @@ The sender is equally as simple, with markup just facilitating the showing of th
 </aura:component>	
 
 ```
-#### Controller
+##### Controller
 ``` Javascript
 ({
     handleEvent : function(component, event, helper) {
@@ -146,6 +148,7 @@ The [Lightning Message Service](https://releasenotes.docs.salesforce.com/en-us/s
 3. Allows us to gain the increased performance benefits of [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) for our dispatcher architecture but maintain compatibility with our legacy components after a transition away from [Application Events](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm) to [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm).
 
 To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm) I created sending and receiving components in both [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) and [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc). The logic is identical between this test and the [Application Events](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm) baseline, the only difference for the [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) components is the method to send the event and i've ported across the logic to [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) as seen below:
+
 #### Aura LMS Sender
 ##### Component
 ``` HTML
@@ -165,6 +168,7 @@ To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/releas
     </lightning:card>
 </aura:component>	
 ```
+
 ##### Controller
 ``` Javascript
 ({
@@ -177,8 +181,8 @@ To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/releas
         component.find("lmsEvent").publish(payload); // fire the event
     }
 })
-
 ```
+
 #### Aura LMS Receiver
 ##### Component
 ``` HTML
@@ -204,8 +208,8 @@ To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/releas
         </div>
     </lightning:card>
 </aura:component>	
-
 ```
+
 ##### Controller
 ``` Javascript
 ({
@@ -236,8 +240,8 @@ To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/releas
         component.set('v.lastMessageTimeTakenMs', timeTakenMs);
     }
 })
-
 ```
+
 #### LWC LMS Sender
 ##### Template
 ``` HTML
@@ -253,6 +257,7 @@ To test the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/releas
     </lightning-card>
 </template>
 ```
+
 ##### Controller
 ``` Javascript
 import { LightningElement, wire } from 'lwc';
@@ -274,6 +279,7 @@ export default class LmsEventSender extends LightningElement {
     }
 }
 ```
+
 #### LWC LMS Receiver
 ##### Template
 ``` HTML
@@ -290,6 +296,7 @@ export default class LmsEventSender extends LightningElement {
     </lightning-card>
 </template>
 ```
+
 ##### Controller
 ``` Javascript
 import { LightningElement, wire } from 'lwc';
@@ -357,6 +364,7 @@ export default class LmsEventReceiver extends LightningElement {
     }
 }
 ```
+
 ### Results
 #### Aura -> Aura
 * Number Of Messages Received: 1000
@@ -381,3 +389,122 @@ export default class LmsEventReceiver extends LightningElement {
 * Average Message Time (ms): 0.10207499819807722
 * Min Message Time (ms): 0.059999991208314896
 * Max Message Time (ms): 1.6700001433491707
+
+## LWC pubsub ES6 module
+### Method
+Before [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm) was made generally available, Salesforce released a unsupported [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) solution was provided that used a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern) [ES6 module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) that creates an event like pattern but not backed by a official Metadata base. This solution however, is not interoperable with [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) so is not suitable for us at this point in time. I decided to test this still as when we have progressed enough into our [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) migration there may be suitable use cases for a [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) only event solution.
+
+I won't put the code for the module here but it is available on [Github](https://github.com/developerforce/pubsub).
+
+Again, the logic in both the [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) sender and receiver is identical to the baseline and the [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm) tests to retain parity.
+
+#### LWC pubsub sender
+##### Template
+``` HTML
+<template>
+    <lightning-card title="LWC - pubsub Event Sender">
+        <div class="slds-var-p-around_large">
+            <lightning-input name="messageText" label="Message Text" value={messageText}></lightning-input>
+            <br/>
+            <div class="slds-align_absolute-center">
+                <lightning-button label="Send Message" title="Send event" onclick={sendEvent}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+```
+
+##### Controller
+``` Javascript
+import { LightningElement, wire } from 'lwc';
+import { CurrentPageReference } from 'lightning/navigation';
+import { fireEvent as firePubsubEvent } from 'c/pubsub';
+
+export default class PubsubSender extends LightningElement {
+    @wire(CurrentPageReference)
+    pageRef;
+
+    messageText;
+
+    sendEvent (event) {
+        // create a payload to send
+        let payload = {
+            message: this.messageText,
+            sendTime: window.performance.now()
+        }
+        firePubsubEvent(this.pageRef, 'pubsubEvent', payload) // fire the event
+    }
+}
+```
+
+#### LWC pubsub receiver
+##### Template
+``` HTML
+<template>
+    <lightning-card title="LWC - pubsub Event Receiver">
+        <div class="slds-var-p-around_large">
+            <span>Number Of Messages Received: {numberOfMessagesReceived}</span><br/>
+            <span>Average Message Time (ms): {averageMessageTimeMs}</span><br/>
+            <span>Min Message Time (ms): {minMessageTimeMs}</span><br/>
+            <span>Max Message Time (ms): {maxMessageTimeMs}</span><br/>
+            <span>Last Message: {lastMessage}</span><br/>
+            <span>Last Message Time Taken (ms): {lastMessageTimeTakenMs}</span><br/>
+        </div>
+    </lightning-card>
+</template>
+```
+
+##### Controller
+``` Javascript
+import { LightningElement, wire } from 'lwc';
+import { CurrentPageReference } from 'lightning/navigation';
+import { registerListener } from 'c/pubsub';
+
+export default class PubsubReceiver extends LightningElement {
+    @wire(CurrentPageReference)
+    pageRef;
+    
+    numberOfMessagesReceived = 0;
+    averageMessageTimeMs = 0;
+    minMessageTimeMs;
+    maxMessageTimeMs;
+    lastMessage;
+    lastMessageTimeTakenMs;
+
+    connectedCallback() {
+        registerListener('pubsubEvent', this.handleEvent, this);
+    }
+
+    handleEvent (event) {
+        let receiveTime = window.performance.now(); // get current time before any calculations so these don't affect the stats
+        // get current values from component
+        let numOfMessages = this.numberOfMessagesReceived;
+        let avg = this.averageMessageTimeMs;
+        let min = this.minMessageTimeMs;
+        let max = this.maxMessageTimeMs;
+        // get values from event
+        let message =  event.message;
+        let sendTime =  event.sendTime;
+
+        // perform calculations
+        let timeTakenMs = receiveTime - sendTime; // calculate time taken in MS
+        numOfMessages += 1; // increment number of messages received
+        avg += (timeTakenMs - avg) / numOfMessages; // calculate using incremental avg formula
+        min = min < timeTakenMs ? min : timeTakenMs; // asses min
+        max = max > timeTakenMs ? max : timeTakenMs; // asses max
+
+        // save results
+        this.numberOfMessagesReceived = numOfMessages;
+        this.averageMessageTimeMs = avg;
+        this.minMessageTimeMs = min;
+        this.maxMessageTimeMs = max;
+        this.lastMessage = message;
+        this.lastMessageTimeTakenMs = timeTakenMs;
+    }
+}
+```
+### Results
+* Number Of Messages Received: 1000
+* Average Message Time (ms): 0.03721000091172755
+* Min Message Time (ms): 0.019999919459223747
+* Max Message Time (ms): 0.7499998901039362
