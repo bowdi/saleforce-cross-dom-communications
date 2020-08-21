@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="messageText" type="String" default="Hello!"/>
+
+    <aura:registerEvent name="applicationEvent" type="c:ApplicationEvent"/>
+
+    <lightning:card>
+        <div class="slds-var-p-around_large">
+            <lightning:input name="messageText" label="Message Text" value="{!v.messageText}"/>
+            <br/>
+            <div class="slds-align_absolute-center">
+                <lightning:button label="Send Message" title="Send event" onclick="{!c.sendEvent}"/>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>	

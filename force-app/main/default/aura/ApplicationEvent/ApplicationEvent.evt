@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="message" type="String" access ="public" required ="true"/>
+    <aura:attribute name="sendTime" type="String" access ="public" required ="true"/>
+</aura:event>
