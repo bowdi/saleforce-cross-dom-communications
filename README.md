@@ -14,7 +14,7 @@
   * LWC -> Aura
   * Aura -> LWC
   * Aura -> Aura
-* LWC pubsub module
+* LWC pubsub ES6 module
 * Conclusion
 
 ## Introduction
@@ -134,6 +134,6 @@ With all this setup we can start to test the performance of the Application Even
 
 ### Results
 * Number Of Messages Received: 1000
-* Average Message Time (ms): 0.04758999799378216
-* Min Message Time (ms): 0.019999919459223747
-* Max Message Time (ms): 1.2350000906735659
+* Average Message Time (ms): 0.06601499463431537
+* Min Message Time (ms): 0.024999957531690598
+* Max Message Time (ms): 2.749999985098839

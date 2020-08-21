@@ -9,7 +9,7 @@
 
     <aura:handler event="c:ApplicationEvent" action="{!c.handleEvent}"/>
 
-    <lightning:card>
+    <lightning:card title="Aura - Application Event Receiver">
         <div class="slds-var-p-around_large">
             <span>Number Of Messages Received: {!v.numberOfMessagesReceived}</span><br/>
             <span>Average Message Time (ms): {!v.averageMessageTimeMs}</span><br/>

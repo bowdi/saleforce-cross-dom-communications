@@ -3,7 +3,7 @@
 
     <aura:registerEvent name="applicationEvent" type="c:ApplicationEvent"/>
 
-    <lightning:card>
+    <lightning:card title="Aura - Application Event Sender">
         <div class="slds-var-p-around_large">
             <lightning:input name="messageText" label="Message Text" value="{!v.messageText}"/>
             <br/>
