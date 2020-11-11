@@ -6,18 +6,17 @@
 | version   | v1: 20.08.2020 |
 | story     | HSPM-108       |
 
-## Index
-* Introduction
-* Application Events
-* Lightning Message Service
+* [Introduction](#introduction)
+* [Application Events](#app_events)
+* [Lightning Message Service](#lms)
   * LWC -> LWC
   * LWC -> Aura
   * Aura -> LWC
   * Aura -> Aura
-* LWC pubsub ES6 module
-* Conclusion
+* [LWC pubsub ES6 module](#lwc_pubsub)
+* [Conclusion](#conclusion)
 
-## Introduction
+## <a name="introduction"></a>Introduction
 As we start to move our front end components away from the [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) framework to [Lightning Web Components](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) (LWC) we will very shortly run into scenario's that require communication across the DOM hierarchy as our entire front-end data transportation pattern ([Dispatcher Pattern](https://devops.vitality.co.uk/confluence/display/SD/Dispatcher+Pattern)) is built on top of an event based, cross DOM solution. In [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) this can be handled easily using the built in [event framework](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_intro.htm) and more specifically, [Application Events](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm). As [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) is built upon the [Web Components](https://github.com/w3c/webcomponents/) standards and uses only very small and specific "modules" of Salesforce proprietary code (exposed as ES6 modules) we don't get the same built in transportation method.
 
 There are two ways of communicating across the DOM when using [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) that follow our current event based architecture:
@@ -28,7 +27,7 @@ We'll explore both for the purposes of this whitepaper so that we get a full pic
 
 All source code is available in [this](https://devops.vitality.co.uk/bitbucket/projects/HLXS/repos/cross-dom-comms-whitepaper/browse) Bitbucket repository for future reference.
 
-## Application Events
+## <a name="app_events"></a>Application Events
 ### Method
 It's worth first baselining the performance against the current technology and this involves running a test against a new [scratch org](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs.htm). To start I created a blank org using the shape defined in [this](https://devops.vitality.co.uk/bitbucket/projects/HLXS/repos/cross-dom-comms-whitepaper/browse) repo. I then created two [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) components, one sender and one receiver with a matching [Application Event](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_application.htm).
 
@@ -142,7 +141,7 @@ With all this setup we can start to test the performance of the Application Even
 * Min Message Time (ms): 0.024999957531690598
 * Max Message Time (ms): 2.749999985098839
 
-## Lightning Message Service
+## <a name="lms"></a>Lightning Message Service
 ### Method
 The [Lightning Message Service](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm) (LMS) was made generally available as of the Summer 20' release. It is a a message service to communicate across the DOM and across presentation technologies ([Visualforce](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_intro_what_is_it.htm), [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm), [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc)) and even into the Lightning Utility Bar (think communicating to a softphone which uses Open CTI). This puts the technology in an extremely useful position for us as it:
 1. Allows us to communicate across the DOM regardless of our technology.
@@ -392,7 +391,7 @@ export default class LmsEventReceiver extends LightningElement {
 * Min Message Time (ms): 0.059999991208314896
 * Max Message Time (ms): 1.6700001433491707
 
-## LWC pubsub ES6 module
+## <a name="lwc_pubsub"></a>LWC pubsub ES6 module
 ### Method
 Before [LMS](https://releasenotes.docs.salesforce.com/en-us/summer20/release-notes/rn_lc_message_channel.htm) was made generally available, Salesforce released a unsupported [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) solution was provided that used a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern) [ES6 module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) that creates an event like pattern but not backed by a official Metadata base. This solution however, is not interoperable with [Aura](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm) so is not suitable for us at this point in time. I decided to test this still as when we have progressed enough into our [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) migration there may be suitable use cases for a [LWC](https://developer.salesforce.com/docs/component-library/documentation/en/lwc) only event solution.
 
@@ -511,7 +510,7 @@ export default class PubsubReceiver extends LightningElement {
 * Min Message Time (ms): 0.019999919459223747
 * Max Message Time (ms): 0.7499998901039362
 
-## Conclusion
+## <a name="conclusion"></a>Conclusion
 While it is clear when looking through the results that the pubsub module pattern seems to be the quickest, against even our baseline, it unfortunately won't be our transportation method of choice at this point in time due to:
 1. It not being interoperable with Aura (this is especially important as we transition between the two frameworks)
 2. It does not have a supported metadata backing i.e. it relies on two components using the same string which seems extremely brittle.
